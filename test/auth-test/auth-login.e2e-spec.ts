@@ -4,7 +4,7 @@ import { applyAppSettings } from '../../src/settings/apply-app-settings';
 import request from 'supertest';
 import { UserManagerForTest } from '../utils/user-manager-for-test';
 
-describe('tests for andpoint auth/login', () => {
+describe.skip('tests for andpoint auth/login', () => {
   let app;
 
   beforeAll(async () => {

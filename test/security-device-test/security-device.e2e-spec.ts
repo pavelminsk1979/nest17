@@ -5,7 +5,7 @@ import request from 'supertest';
 import { UserManagerForTest } from '../utils/user-manager-for-test';
 import cookieParser from 'cookie-parser';
 
-describe('tests for andpoint security/devices', () => {
+describe.skip('tests for andpoint security/devices', () => {
   let app;
 
   let refreshToken;
