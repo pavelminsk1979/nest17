@@ -8,14 +8,14 @@ import {
   NotFoundException,
   Param,
   Post,
-  Query,
   UseGuards,
 } from '@nestjs/common';
 import { UsersService } from '../services/user-service';
 import { UserQueryRepository } from '../repositories/user-query-repository';
 import { CreateUserInputModel } from './pipes/create-user-input-model';
 import { AuthGuard } from '../../../common/guard/auth-guard';
-import { QueryParamsInputModel } from '../../../common/pipes/query-params-input-model';
+
+import { UserSqlQueryRepository } from '../repositories/user-sql-query-repository';
 
 /*подключаю данный ГАРД для всех эндпоинтов user и поэтому
 подключение
@@ -37,6 +37,7 @@ export class UsersController {
   constructor(
     protected usersService: UsersService,
     protected userQueryRepository: UserQueryRepository,
+    protected userSqlQueryRepository: UserSqlQueryRepository,
   ) {}
 
   /*@HttpCode(HttpStatus.OK)-чтобы статус код возвращать
@@ -82,12 +83,18 @@ export class UsersController {
   }
 
   @Get()
-  async getUsers(@Query() queryParamsUserInputModel: QueryParamsInputModel) {
-    const users = await this.userQueryRepository.getUsers(
-      queryParamsUserInputModel,
-    );
+  async getUsers() {
+    const users = await this.userSqlQueryRepository.getUsers();
     return users;
   }
+
+  /*  @Get()
+    async getUsers(@Query() queryParamsUserInputModel: QueryParamsInputModel) {
+      const users = await this.userQueryRepository.getUsers(
+        queryParamsUserInputModel,
+      );
+      return users;
+    }*/
 
   /*@Delete(':id')
   --тут id это uriПараметр он в урле и из
