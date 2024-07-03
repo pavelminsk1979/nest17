@@ -20,6 +20,7 @@ import { UserSqlQueryRepository } from '../repositories/user-sql-query-repositor
 /*подключаю данный ГАРД для всех эндпоинтов user и поэтому
 подключение
 Это Basik авторизация*/
+
 @UseGuards(AuthGuard)
 @Controller('users')
 /* @Controller()-- декоратор,

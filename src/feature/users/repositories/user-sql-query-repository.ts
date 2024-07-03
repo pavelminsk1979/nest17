@@ -8,8 +8,8 @@ export class UserSqlQueryRepository {
 
   async getUsers() {
     const res = await this.dataSource.query(
-      'SELECT "Id", "FirstName", "LastNme", "PassportNumber", "IsMaried"\n' +
-        '\tFROM public."user";',
+      'SELECT id, "Login", "Email", "CreatedAt", "PasswordHash"\n' +
+        '\tFROM public.users;',
     );
 
     return res;
