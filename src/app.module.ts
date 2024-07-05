@@ -103,7 +103,7 @@ dotenv.config();
       port: 5432,
       username: 'postgres',
       password: 'pavel',
-      database: 'start1User',
+      database: 'project1',
       autoLoadEntities: true,
       synchronize: true,
     }),

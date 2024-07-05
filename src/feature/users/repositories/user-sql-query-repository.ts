@@ -7,10 +7,10 @@ export class UserSqlQueryRepository {
   constructor(@InjectDataSource() protected dataSource: DataSource) {}
 
   async getUsers() {
-    const res = await this.dataSource.query(
-      'SELECT id, "Login", "Email", "CreatedAt", "PasswordHash"\n' +
-        '\tFROM public.users;',
-    );
+    const res = await this.dataSource.query(`
+    SELECT id, login, "passwordHash", email, "createdAt", "confirmationCode", "isConfirmed", "expirationDate"
+     FROM public.users;
+    `);
 
     return res;
   }
