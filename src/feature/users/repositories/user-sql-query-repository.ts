@@ -6,13 +6,13 @@ import { InjectDataSource } from '@nestjs/typeorm';
 export class UserSqlQueryRepository {
   constructor(@InjectDataSource() protected dataSource: DataSource) {}
 
-  async getUsers() {
+  async getUsers(id: string) {
     const res = await this.dataSource.query(`
     SELECT id, login, "passwordHash", email, "createdAt", "confirmationCode", "isConfirmed", "expirationDate"
      FROM public.users;
     `);
 
-    return res;
+    return { res, id };
   }
 
   /* async getUsers(queryParams: QueryParamsInputModel) {
